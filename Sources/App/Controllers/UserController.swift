@@ -11,7 +11,7 @@ final class UserController {
     func register(_ req: Request) throws -> Future<Response> {
         return try req.content.decode(User.self).flatMap { user in
 
-            return try User.query(on: req).filter(\User.email == user.email).first().flatMap { result in
+            return User.query(on: req).filter(\User.email == user.email).first().flatMap { result in
                 if let _ = result {
                     return Future.map(on: req) {
                         return req.redirect(to: "/register")

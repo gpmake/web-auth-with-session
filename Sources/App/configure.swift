@@ -15,9 +15,6 @@ public func configure(
     try routes(router)
     services.register(router, as: Router.self)
 
-    let myService = NIOServerConfig.default(port: 8011)
-    services.register(myService)
-
     let leafProvider = LeafProvider()
     try services.register(leafProvider)
     try services.register(FluentSQLiteProvider())
